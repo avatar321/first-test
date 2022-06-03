@@ -9,6 +9,5 @@ jobs:
       - name: echo a string
         run: echo "test line"
       - name
-        run: |
-          node -v
-          npm -v
+        run: node -v
+        run: npm-v

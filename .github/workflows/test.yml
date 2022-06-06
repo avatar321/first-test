@@ -10,4 +10,7 @@ jobs:
         run: echo "test line"
       - name: shell command
         run: echo "this is a test line to file" > /home/rootuser/softwares/first-test/testfile.txt
+        run: |
+          cpu -v
+          git -v
           

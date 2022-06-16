@@ -3,7 +3,7 @@ name: first-test
 on: 
   #push:
   schedule:
-    - cron: "13 * * * *"
+    - cron: "30 10 * * *"
   pull_request:
     types: [closed, assigned, opened, reopened]
 

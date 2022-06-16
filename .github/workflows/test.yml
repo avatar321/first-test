@@ -1,6 +1,6 @@
 name: first-test
 
-on: push
+on: [ push, pull_request ]
 
 jobs:
   run-shell-command:
@@ -10,6 +10,6 @@ jobs:
         run: echo "test line"
       - name: shell command
         run: |
-          cpu -v
+          df -h
           git -v
           

@@ -11,5 +11,5 @@ jobs:
       - name: shell command
         run: |
           df -h
-          git -v
+          git --version
           

@@ -1,9 +1,8 @@
 name: first-test
 
 on: 
-  push:
-  pull_request:
-    types: [closed, assigned, opened, reopened]
+  repository_dispatch:
+    types: [build]
 
 jobs:
   run-shell-command:

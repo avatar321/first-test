@@ -12,4 +12,7 @@ jobs:
         run: |
           df -h
           git --version
-          
+      -name: somename
+        age: 43
+        address: xyz
+        active: true

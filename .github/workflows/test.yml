@@ -17,3 +17,9 @@ jobs:
           git --version
       - name: somename
         run: echo "another text line"
+  
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: deploy

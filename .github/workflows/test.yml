@@ -20,7 +20,7 @@ jobs:
   
   deployment:
     runs-on: ubuntu-latest
-    environment: production
+    environment: QA
     steps:
       - name: deploy
         run: echo "dummy"

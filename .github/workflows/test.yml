@@ -20,7 +20,19 @@ jobs:
   
   deployment:
     runs-on: ubuntu-latest
-    environment: QA
+      inputs:
+        name:
+          type: choice
+          description: Who to greet
+          options: 
+          - monalisa
+          - cschleiden
+        message:
+          required: true
+        use-emoji:
+          type: boolean
+          description: Include 🎉🤣 emojis
+    environment: ${{ github.event.inputs.message }}
     steps:
       - name: deploy
         run: echo "dummy"

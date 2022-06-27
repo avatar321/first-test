@@ -6,33 +6,25 @@ on:
     types: [closed, assigned, opened, reopened]
 
 jobs:
-  run-shell-command:
+  getinputjob:
     runs-on: ubuntu-latest
     steps:
-      - name: echo a string
-        run: echo "test line"
-      - name: shell command
-        run: |
-          df -h
-          git --version
-      - name: somename
-        run: echo "another text line"
-  
-  deployment:
-    runs-on: ubuntu-latest
-      inputs:
-        name:
-          type: choice
-          description: Who to greet
-          options: 
-          - monalisa
-          - cschleiden
-        message:
+      on: 
+        workflow_dispatch:
+        inputs:
+          environment:
+          description: 'Define env name'     
           required: true
-        use-emoji:
-          type: boolean
-          description: Include 🎉🤣 emojis
-    environment: ${{ github.event.inputs.message }}
+          default: 'prod'
+        branch:
+          description: 'Define branch name'     
+          required: true
+          default: 'master'
+        
+
+  printInputs:
+    runs-on: ubuntu-latest
     steps:
-      - name: deploy
-        run: echo "dummy"
+    - run: |
+        echo "Env: ${{ github.event.inputs.environment }}" 
+        echo "Branch: ${{ github.event.inputs.branch }}"

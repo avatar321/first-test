@@ -2,8 +2,17 @@ name: first-test
 
 on: 
   #push:
-  pull_request:
-    types: [closed, assigned, opened, reopened]
+  workflow_call:
+    inputs:
+      username:
+        description: "Please enter username"
+        required: true
+        type: string
+      password:
+        description: "Please enter password"
+        required: true
+        type: number
+
 
 jobs:
   run-shell-command:

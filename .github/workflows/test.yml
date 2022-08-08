@@ -1,7 +1,7 @@
 name: first-test
 
 on: 
-  #push:
+  push:
   workflow_call:
     inputs:
       username:

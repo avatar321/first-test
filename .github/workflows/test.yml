@@ -3,14 +3,15 @@ name: first-test
 on: 
   workflow_dispatch:
     inputs:
+      secrets:
       username:
         description: "Please enter username"
         required: true
         type: string
       password:
-        description: "Please enter password"
-        required: true
-        type: number
+          description: "Please enter password"
+          required: true
+          type: number
 
 
 jobs:

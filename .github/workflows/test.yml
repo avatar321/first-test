@@ -1,30 +1,28 @@
 name: first-test
 
 on: 
-  push:
-  pull_request:
-    types: [closed, assigned, opened, reopened]
+  #push:
+  workflow_call:
+    inputs:
+      username:
+        description: "Please enter username"
+        required: true
+        type: string
+      password:
+        description: "Please enter password"
+        required: true
+        type: number
+
 
 jobs:
-  getinputjob:
+  run-shell-command:
     runs-on: ubuntu-latest
     steps:
-      on: 
-        workflow_dispatch:
-        inputs:
-          environment:
-          description: 'Define env name'     
-          required: true
-          default: 'prod'
-        branch:
-          description: 'Define branch name'     
-          required: true
-          default: 'master'
-        
-
-  printInputs:
-    runs-on: ubuntu-latest
-    steps:
-    - run: |
-        echo "Env: ${{ github.event.inputs.environment }}" 
-        echo "Branch: ${{ github.event.inputs.branch }}"
+      - name: echo a string
+        run: echo "test line"
+      - name: shell command
+        run: |
+          df -h
+          git --version
+      - name: somename
+        run: echo "another text line"

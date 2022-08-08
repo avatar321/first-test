@@ -3,7 +3,7 @@ name: first-test
 on: 
   workflow_dispatch:
     inputs:
-      secrets:
+      secrets_type:
       username:
         description: "Please enter username"
         required: true

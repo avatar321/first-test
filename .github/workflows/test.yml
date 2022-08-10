@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo a string
-        run: echo "test line"
+        run: echo ${{ inputs.username }}
       - name: shell command
         run: |
           df -h

@@ -4,7 +4,7 @@ on:
   #push:
   workflow_dispatch:
     inputs:
-      username:
+      readobject:
         description: "Please enter username"
         required: true
         type: string
@@ -16,9 +16,9 @@ jobs:
     steps:
       - name: readjson
         run: |
-          username=`echo '${{ github.event.inputs.username }}' |jq .username`
-          password=`echo '${{ github.event.inputs.username }}' |jq .password`
+          user=`echo "${{ github.event.inputs.readobject }}" |jq .username`
+          pass=`echo "${{ github.event.inputs.readobject }}" |jq .password`
       - name: varaible
         run: |
-          echo ${{ steps.readjson.outputs.username }}
-          echo ${{ steps.readjson.outputs.password }}
+          echo ${{ steps.readjson.outputs.user }}
+          echo ${{ steps.readjson.outputs.pass }}

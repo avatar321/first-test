@@ -17,8 +17,8 @@ jobs:
       - name: readjson
         run: |
           echo ::set-output name=user::$(echo ${{ github.event.inputs.readobject }} |jq .username)
-          echo ::set-output name=pass::$(echo ${{ github.event.inputs.readobject }} |jq .password)
+          #echo ::set-output name=pass::$(echo ${{ github.event.inputs.readobject }} |jq .password)
       - name: varaible
         run: |
           echo ${{ steps.readjson.outputs.user }}
-          echo ${{ steps.readjson.outputs.pass }}
+          #echo ${{ steps.readjson.outputs.pass }}

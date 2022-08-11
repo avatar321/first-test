@@ -14,11 +14,11 @@ jobs:
   run-shell-command:
     runs-on: ubuntu-latest
     steps:
-      - name: echo a string
+      - name: readjson
         run: |
           username=`echo ${{ github.event.inputs.username }} |jq .username`
           password=`echo ${{ github.event.inputs.username }} |jq .password`
       - name: varaible
         run: |
-          echo ${{ username }}
-          echo ${{ password }}
+          echo ${{ steps.readjson.outputs.username }}
+          echo ${{ steps.readjson.outputs.password }}

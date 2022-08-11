@@ -1,17 +1,13 @@
 name: first-test
 
 on: 
-  workflow_dispatch:
+  #push:
+  workflow_call:
     inputs:
-      secrets_type:
       username:
         description: "Please enter username"
         required: true
         type: string
-      password:
-          description: "Please enter password"
-          required: true
-          type: number
 
 
 jobs:
@@ -19,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo a string
-        run: echo ${{ inputs.username }}
-      - name: shell command
         run: |
-          df -h
-          git --version
-      - name: somename
-        run: echo "another text line"
+          username=`echo ${{ github.event.inputs.username }} |jq .username`
+          password=`echo ${{ github.event.inputs.username }} |jq .password`
+      - name: varaible
+        run: |
+          echo $username
+          echo $password

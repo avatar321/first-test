@@ -2,7 +2,7 @@ name: first-test
 
 on: 
   #push:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       username:
         description: "Please enter username"

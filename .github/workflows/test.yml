@@ -16,8 +16,8 @@ jobs:
     steps:
       - name: readjson
         run: |
-          username=`echo ${{ github.event.inputs.username }} |jq .username`
-          password=`echo ${{ github.event.inputs.username }} |jq .password`
+          username=`echo '${{ github.event.inputs.username }}' |jq .username`
+          password=`echo '${{ github.event.inputs.username }}' |jq .password`
       - name: varaible
         run: |
           echo ${{ steps.readjson.outputs.username }}

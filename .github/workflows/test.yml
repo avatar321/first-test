@@ -20,5 +20,5 @@ jobs:
           password=`echo ${{ github.event.inputs.username }} |jq .password`
       - name: varaible
         run: |
-          echo $username
-          echo $password
+          echo ${{ username }}
+          echo ${{ password }}

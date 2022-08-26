@@ -1,24 +1,24 @@
 name: first-test
-
 on: 
-  #push:
-  workflow_dispatch:
-    inputs:
-      readobject:
-        description: "Please enter username"
-        required: true
-        type: string
-
-
+  push
 jobs:
-  run-shell-command:
+  job1:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: readjson
-        run: |
-          echo ::set-output name=user::$(echo ${{ github.event.inputs.readobject }} |jq .username)
-          #echo ::set-output name=pass::$(echo ${{ github.event.inputs.readobject }} |jq .password)
-      - name: varaible
-        run: |
-          echo ${{ steps.readjson.outputs.user }}
-          #echo ${{ steps.readjson.outputs.pass }}
+    - name: checkout 
+      uses: actions/checkout@2
+    - name: set-json-matrix  
+      id: set-matrix
+       run:|
+        JSON=$(cat ./your.json)
+        echo ::set-output name=matrix::${JSON//%/%25}
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+    steps:
+    - run: build

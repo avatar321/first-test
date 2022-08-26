@@ -1,24 +1,17 @@
-name: first-test
-on: 
-  push
+name: build
+on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-    - name: checkout 
-      uses: actions/checkout@2
-    - name: set-json-matrix  
-      id: set-matrix
-       run:|
-        JSON=$(cat ./your.json)
-        echo ::set-output name=matrix::${JSON//%/%25}
-
+      - id: set-matrix
+        run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
   job2:
     needs: job1
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+      matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
     steps:
-    - run: build
+      - run: build

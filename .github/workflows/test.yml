@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check out
-        uses: actions/checkout@2
+        uses: actions/checkout@v2
       - id: set_var
         run: |
           content=`cat ./secret.json`
